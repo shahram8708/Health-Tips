@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Tips</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 250px auto 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .generator {
+            margin-bottom: 20px;
+        }
+
+        .generator h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .about {
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Healthy Tips and Treatments</h1>
+        <p>Discover the Best Tips for Your Health and Wellness!</p>
+    </header>
+    <main>
+        <section class="generator">
+            <h2>Get Health Tips</h2>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+            <form action="/search" method="post">
+                <input type="text" name="search_query" placeholder="Enter a health-related query..." required>
+                <button type="submit">Get Tips</button>
+            </form>
+        </section>
+        <section class="about">
+            <h2>About</h2>
+            <p>Welcome to Healthy Tips and Treatments! Enter a health-related query to get tips and information. Our
+                advanced algorithms analyze the input to provide valuable health tips and treatment advice.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Healthy Tips and Treatments. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Tips - Results</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-right: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Healthy Tips</h1>
+    </header>
+    <main>
+        <article class="content" id="storyContent">
+            {{ story_content | safe }}
+        </article>
+        <div class="controls">
+            <button id="playAudio">Play Audio</button>
+            <button id="stopAudio">Stop Audio</button>
+            <button id="copyText">Copy Text</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Healthy Tips and Treatments. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const storyContentElement = document.getElementById('storyContent');
+        const playButton = document.getElementById('playAudio');
+        const stopButton = document.getElementById('stopAudio');
+        const copyButton = document.getElementById('copyText');
+
+        const synth = window.speechSynthesis;
+        let utterance;
+
+        playButton.addEventListener('click', () => {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            const text = storyContentElement.innerText;
+            utterance = new SpeechSynthesisUtterance(text);
+            synth.speak(utterance);
+        });
+
+        stopButton.addEventListener('click', () => {
+            if (synth.speaking) {
+                synth.cancel();
+            }
+        });
+
+        copyButton.addEventListener('click', () => {
+            const text = storyContentElement.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Text copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    </script>
+</body>
+
+</html>
